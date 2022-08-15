@@ -19,7 +19,7 @@
     "no-console": "warn",
     "indent": [
       "error",
-      2,
+      4,
       {
         "SwitchCase": 1
       }
@@ -46,6 +46,13 @@
       "always"
     ],
     "arrow-spacing": [
+      "error",
+      {
+        "before": true,
+        "after": true
+      }
+    ],
+    "keyword-spacing": [
       "error",
       {
         "before": true,
