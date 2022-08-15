@@ -33,6 +33,19 @@ describe('/api/v1/users routes', () => {
         expect(response2.status).toEqual(409);
     });
 
+    it('#DELETE /api/v1/users/sessions should log a user out', async () => {
+        const agent = request.agent(app);
+
+        // Log in
+        await agent.post('/api/v1/users').send({ email: 'alice@test.com', password: '123456' });
+
+        // Log out
+        await agent.delete('/api/v1/users/sessions');
+
+        const session = agent.jar.getCookie(process.env.COOKIE_NAME, CookieAccessInfo.All);
+        expect(session).toBeUndefined();
+    });
+
     afterAll(async () => {
         await setup(pool);
         pool.end();
