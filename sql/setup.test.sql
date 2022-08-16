@@ -11,7 +11,6 @@ insert into restaurants (name, cuisine, cost, website, image) values
 ('Syun Izakaya', 'Japanese', 2, 'https://www.syunhillsboro.com/', 'https://www.syunhillsboro.com/uploads/1/3/4/6/134642574/s399356810435617057_p228_i1_w1000.jpeg?width=1200');
 
 insert into reviews (user_id, restaurant_id, detail, stars) values
-(1, 1, 'I like it!', 5),
 (1, 2, 'Great samosas!', 4),
 (1, 3, 'Get the okonomiyaki.', 5),
 (3, 1, 'Loud environment :(', 1),
