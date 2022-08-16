@@ -6,6 +6,8 @@ const users = {
         email: 'bob@test.com',
         password: 'qwerty'
     },
+    // These are users that are seeded into the database for testing. I have enumerated their credentials here for
+    // convenience while writing tests.
     admin: {
         id: '1',
         email: 'admin@test.com',
