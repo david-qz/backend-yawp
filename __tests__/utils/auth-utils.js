@@ -6,15 +6,20 @@ const users = {
         email: 'bob@test.com',
         password: 'qwerty'
     },
-    existingUser: {
+    alice: {
         id: '1',
         email: 'alice@test.com',
         password: '123456'
     },
-    adminUser: {
+    admin: {
         id: '2',
         email: 'admin@test.com',
         password: 'admin'
+    },
+    curmudgeon: {
+        id: '3',
+        email: 'curmudgeon@test.com',
+        password: 'eeyore'
     }
 };
 
