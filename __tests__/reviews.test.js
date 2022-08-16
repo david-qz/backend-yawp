@@ -1,8 +1,8 @@
 const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
-const request = require('supertest');
-const app = require('../lib/app');
-const { CookieAccessInfo } = require('cookiejar');
+// const request = require('supertest');
+// const app = require('../lib/app');
+// const { CookieAccessInfo } = require('cookiejar');
 
 const { users, login } = require('./utils/auth-utils');
 
@@ -22,7 +22,7 @@ describe('/api/v1/reviews routes', () => {
         const review = response.body;
         expect(review).toEqual({
             id: '1',
-            userId: '1',
+            userId: users.alice.id,
             restaurantId: '2',
             detail: 'Great samosas!',
             stars: 4
