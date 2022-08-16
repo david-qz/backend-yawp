@@ -74,6 +74,20 @@ describe('/api/v1/restaurants routes', () => {
         expect(response.status).toEqual(401);
     });
 
+    it('#GET /api/v1/restaurants/search?query=* should search the restaurants table', async () => {
+        // Search for 'japan'
+        let response = await request(app).get('/api/v1/restaurants/search?query=japan');
+        expect(response.status).toEqual(200);
+        // Expect it to find Syun Izakaya via the 'cuisine' column.
+        expect(response.body[0].name).toEqual('Syun Izakaya');
+
+        // Search for 'top'
+        response = await request(app).get('/api/v1/restaurants/search?query=top');
+        expect(response.status).toEqual(200);
+        // Expect it to find Top Burmese via the 'name' column.
+        expect(response.body[0].name).toEqual('Top Burmese');
+    });
+
     afterAll(async () => {
         await setup(pool);
         pool.end();
