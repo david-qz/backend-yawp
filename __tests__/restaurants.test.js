@@ -51,7 +51,7 @@ describe('/api/v1/restaurants routes', () => {
     });
 
     it('#POST /api/v1/restaurants/:id/reviews should create a new review for the logged in user', async () => {
-        const user = users.existingUser;
+        const user = users.alice;
         const newReview = { detail: 'I like it!', stars: 5 };
 
         const agent = await login(user);

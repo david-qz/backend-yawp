@@ -34,7 +34,7 @@ describe('/api/v1/users routes', () => {
 
     it('#POST /api/v1/users should error if email already exists', async () => {
         // A user with the same email as an existing user
-        const user = { ...users.existingUser, password: 'blah' };
+        const user = { ...users.alice, password: 'blah' };
 
         // Try to create user
         const response2 = await request(app).post('/api/v1/users').send(user);
@@ -45,7 +45,7 @@ describe('/api/v1/users routes', () => {
 
     it('#GET /api/v1/users should return a list of users if logged in as an admin', async () => {
         // Log in as admin
-        const agent = await login(users.adminUser);
+        const agent = await login(users.admin);
 
         // Get a list of users
         const response = await agent.get('/api/v1/users');
@@ -62,7 +62,7 @@ describe('/api/v1/users routes', () => {
 
     it('#GET /api/v1/users should return 401 if not logged in as an admin user', async () => {
         // Log in as regular user
-        const agent = await login(users.existingUser);
+        const agent = await login(users.alice);
 
         const response = await agent.get('/api/v1/users');
         // Expect unauthorized
@@ -73,7 +73,7 @@ describe('/api/v1/users routes', () => {
         const agent = request.agent(app);
 
         // Log in as existing user
-        const response = await agent.post('/api/v1/users/sessions').send(users.existingUser);
+        const response = await agent.post('/api/v1/users/sessions').send(users.alice);
         expect(response.status).toEqual(200); // Expect success
 
         // Expect a session cookie to exist
@@ -85,7 +85,7 @@ describe('/api/v1/users routes', () => {
         const agent = request.agent(app);
 
         // Log in with wrong password
-        const response = await agent.post('/api/v1/users/sessions').send({ ...users.existingUser, password: 'wrong' });
+        const response = await agent.post('/api/v1/users/sessions').send({ ...users.alice, password: 'wrong' });
         expect(response.status).toEqual(401); // Expect 401
 
         // Expect no session
@@ -95,7 +95,7 @@ describe('/api/v1/users routes', () => {
 
     it('#DELETE /api/v1/users/sessions should log a user out', async () => {
         // Log in as existing user
-        const agent = await login(users.existingUser);
+        const agent = await login(users.alice);
 
         // Log out
         await agent.delete('/api/v1/users/sessions');
