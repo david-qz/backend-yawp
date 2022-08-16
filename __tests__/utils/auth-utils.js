@@ -6,15 +6,15 @@ const users = {
         email: 'bob@test.com',
         password: 'qwerty'
     },
-    alice: {
-        id: '1',
-        email: 'alice@test.com',
-        password: '123456'
-    },
     admin: {
-        id: '2',
+        id: '1',
         email: 'admin@test.com',
         password: 'admin'
+    },
+    alice: {
+        id: '2',
+        email: 'alice@test.com',
+        password: '123456'
     },
     curmudgeon: {
         id: '3',

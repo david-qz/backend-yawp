@@ -6,11 +6,7 @@ module.exports = (pool) => {
         .readFile(`${__dirname}/../sql/setup.sql`, { encoding: 'utf-8' })
         .then((sql) => pool.query(sql))
         .then(() => {
-            if (process.env.NODE_ENV === 'test') {
-                return fs
-                    .readFile(`${__dirname}/../sql/setup.test.sql`, { encoding: 'utf-8' })
-                    .then(sql => pool.query(sql));
-            } else {
+            if (process.env.NODE_ENV !== 'test') {
                 console.log('✅ Database setup complete!');
             }
         })
