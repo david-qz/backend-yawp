@@ -7,10 +7,12 @@ const users = {
         password: 'qwerty'
     },
     existingUser: {
+        id: '1',
         email: 'alice@test.com',
         password: '123456'
     },
     adminUser: {
+        id: '2',
         email: 'admin@test.com',
         password: 'admin'
     }
