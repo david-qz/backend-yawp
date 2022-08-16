@@ -43,6 +43,32 @@ describe('/api/v1/users routes', () => {
         expect(response2.status).toEqual(409);
     });
 
+    it('#GET /api/v1/users should return a list of users if logged in as an admin', async () => {
+        // Log in as admin
+        const agent = await login(users.adminUser);
+
+        // Get a list of users
+        const response = await agent.get('/api/v1/users');
+        expect(response.status).toEqual(200);
+
+        // Expect that list is well-formed
+        const usersList = response.body;
+        expect(usersList).toBeInstanceOf(Array);
+        usersList.forEach(user => expect(user).toEqual({
+            id: expect.any(String),
+            email: expect.any(String)
+        }));
+    });
+
+    it('#GET /api/v1/users should return 401 if not logged in as an admin user', async () => {
+        // Log in as regular user
+        const agent = await login(users.existingUser);
+
+        const response = await agent.get('/api/v1/users');
+        // Expect unauthorized
+        expect(response.status).toEqual(401);
+    });
+
     it('#POST /api/v1/users/sessions should log a user in', async () => {
         const agent = request.agent(app);
 

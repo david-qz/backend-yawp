@@ -5,5 +5,6 @@ drop table if exists users;
 create table users (
     id bigint generated always as identity primary key,
     email text not null unique,
-    password_hash text not null
+    password_hash text not null,
+    is_admin bool not null default false
 );
